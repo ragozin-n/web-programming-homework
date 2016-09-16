@@ -1,17 +1,14 @@
 import os
 import socket
 
-HOST = 'localhost'
-PORT = 8000
-BUFFER_SIZE = 1024
 _socket = socket.socket()
-_socket.bind((HOST,PORT))
+_socket.bind(('localhost',8080))
 _socket.listen(1)
 print ('Serving on ' + str(HOST) + ':' + str(PORT))
 
 while True:
 	connection, _address = _socket.accept()
-	data = connection.recv(BUFFER_SIZE)
+	data = connection.recv(1024)
 	request = data.decode("utf-8").split("\r\n", 1)[0]
 	address = request.split(" ")[1]
 	
