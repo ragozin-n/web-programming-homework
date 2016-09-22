@@ -2,9 +2,8 @@ import os
 import socket
 
 _socket = socket.socket()
-_socket.bind(('localhost',8080))
+_socket.bind(('localhost',8000))
 _socket.listen(1)
-print ('Serving on ' + str(HOST) + ':' + str(PORT))
 
 while True:
 	connection, _address = _socket.accept()
