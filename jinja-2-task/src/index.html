@@ -1,8 +1,4 @@
 {% extends "base.html" %}
 {% block title %}Index{% endblock %}
-{% block head %}
-    {{ super() }}
-{% endblock %}
-{% block body %}
-<li>{{ link }}</li>
-{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+{% block body %}<li>{{ link }}</li>{% endblock %}
