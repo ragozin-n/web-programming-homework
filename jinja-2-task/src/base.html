@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+	<title>{% block title %}{% endblock %}</title>
+	{% endblock %}
+</head>
+<body>
+	<ul style="display:table; margin:0 auto;">
+	{% block body %}{% endblock %}
+	</ul>
+</body>
+</html>
