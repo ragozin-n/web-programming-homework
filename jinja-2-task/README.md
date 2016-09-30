@@ -1,4 +1,4 @@
 ##usage: 
 ```python 
-myenv/bin/pip jinja-server.py
+myenv/bin/pip bottle-server.py
 ```
