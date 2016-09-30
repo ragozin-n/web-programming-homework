@@ -1,44 +1,17 @@
-from wsgiref.simple_server import make_server
+from bottle import Bottle, run
 from jinja2 import FileSystemLoader, Environment
-import selector
 
-class Base(object):
+env = Environment(loader=FileSystemLoader('templates'))
+app = Bottle()
 
-	def __init__(self,environ,start_response,link,template):
-		self.env = environ
-		self.start_response = start_response
-		self.templates  = Environment(loader=FileSystemLoader('src'))
-		self.template = template
-		self.link = link
+@app.get('/')
+@app.get('/index.html')
+def IndexPage():
+    return env.get_template('index.html').render(link="""<a href="about/aboutme.html">About me!</a>""")
 
-	def __iter__(self):
-		self.start_response('200 OK',[("Content-Type", "text/html")])
-		yield self.templates.get_template(self.template).render(link=self.link)
+@app.get('/about/aboutme.html')
+def AboutMePage():
+    return env.get_template('about/aboutme.html').render(link="""<a href="/">Index!</a>""")
 
-class IndexPage(Base):
-	def __init__(self,environ,start_response):
-		Base.__init__(self, 
-					environ, 
-					start_response, 
-					"""<a href="aboutme/aboutme.html">About me!</a>""", 
-					"index.html")
-
-class AboutPage(Base):
-	def __init__(self,environ,start_response):
-		Base.__init__(self,
-					environ,
-					start_response, 
-					"""<a href="/">Index</a>""", 
-					"aboutme/aboutme.html")
-
-
-if __name__ == '__main__':
-	#'RESTful' mapping, lol
-	# app =  selector.Selector()
-	# app.add('/',GET=IndexPage)
-	# app.add("/index.html",GET=IndexPage)
-	# app.add("/aboutme/aboutme.html",GET=AboutPage)
-
-	_server = make_server('localhost', 8000, app)
-	print('Serving localhost on port 8000...')
-	_server.serve_forever()
+if __name__=="__main__":
+	run(app, host='localhost', port=8000)

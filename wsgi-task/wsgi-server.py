@@ -47,7 +47,7 @@ class Middleware(object):
             else:
                 yield line
 
-app = Middleware(app)
+# app = Middleware(app)
 if __name__ == '__main__':
     _server = make_server('localhost', 8000, app)
     print "Serving localhost on port 8000..."
