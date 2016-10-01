@@ -1,4 +1,4 @@
 ##usage: 
 ```python 
-myenv/bin/pip bottle-server.py
+myenv/bin/python bottle-server.py
 ```
