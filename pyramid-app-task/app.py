@@ -13,7 +13,9 @@ def AboutMePage(request):
 
 if __name__ == '__main__':
     config = Configurator()
-    config.add_route('index', '/')
+    config.add_route('home', '/')
+    config.add_view(IndexPage, route_name='home')
+    config.add_route('index', '/index.html')
     config.add_view(IndexPage, route_name='index')
     config.add_route('about', '/about/aboutme.html')
     config.add_view(AboutMePage, route_name='about')
