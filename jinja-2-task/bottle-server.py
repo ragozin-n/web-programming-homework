@@ -1,7 +1,7 @@
 from bottle import Bottle, run
 from jinja2 import FileSystemLoader, Environment
 
-env = Environment(loader=FileSystemLoader('src'))
+env = Environment(loader=FileSystemLoader('views'))
 app = Bottle()
 
 @app.get('/')
